@@ -1,341 +1,236 @@
-Markdown
-========
-
-Version 1.0.1 - Tue 14 Dec 2004
-
-by John Gruber  
-<http://daringfireball.net/>
+HowtoBeginGroupDeveloping
+=========================
 
 
-Introduction
-------------
-
-Markdown is a text-to-HTML conversion tool for web writers. Markdown
-allows you to write using an easy-to-read, easy-to-write plain text
-format, then convert it to structurally valid XHTML (or HTML).
-
-Thus, "Markdown" is two things: a plain text markup syntax, and a
-software tool, written in Perl, that converts the plain text markup 
-to HTML.
-
-Markdown works both as a Movable Type plug-in and as a standalone Perl
-script -- which means it can also be used as a text filter in BBEdit
-(or any other application that supporst filters written in Perl).
-
-Full documentation of Markdown's syntax and configuration options is
-available on the web: <http://daringfireball.net/projects/markdown/>.
-(Note: this readme file is formatted in Markdown.)
+!!NOTE!!
+Git Official - <http://git-scm.com/>
+Github - <http://github.com/>
+Actually, you can get all the help you need from <http://help.github.com/>
+Text below is just a rough conclusion, which may even be incorrect.
 
 
+Step 0 Install and Setup Git
+----------------------------
 
-Installation and Requirements
+In Fedora
+	sudo yum install git gitk
+Or in Ubuntu
+	sudo apt-get install git gitk
+Then
+	git config --global user.name YOUR_NAME
+	git config --global user.email 'YOUR_EMAIL'
+
+e.g.
+A new user named rescue, do it like
+	git config --global user.name rescue
+	git config --global user.email 'librae8226@hotmail.com'
+Then you can see your info by typing in
+	git config --global --list
+As like:
+[rescue@leafgrass workspace]$ git config --global user.name rescue
+[rescue@leafgrass workspace]$ git config --global user.email 'librae8226@hotmail.com'
+[rescue@leafgrass workspace]$ git config --global --list
+user.name=rescue
+user.email=librae8226@hotmail.com
+[rescue@leafgrass workspace]$ 
+
+
+Step 1 Signup at Github
+-----------------------
+Nothing much to say :)
+
+
+Step 2 Fork A Project Repo and Work on It
+-----------------------------------------
+Go to LeafGrass github page, choose repo "grouoptest", then click on "Fork"
+button on up right of the page. Wait a minute, this repo will be forked.
+
+OK, for now, you've forked a project from organization LeafGrass.
+Click "Dashboard" to go to your own github page and choose the repo you've
+just forked.
+See? There is a line represent for address of this repo, like:
+    git@github.com:rescue/grouptest.git
+Ok, in your local command line, run
+	git clone git@github.com:rescue/grouptest.git
+
+Then, I guess you'll meet a problem below, like:
+[rescue@leafgrass workspace]$ git clone git@github.com:rescue/grouptest.git
+Cloning into grouptest...
+The authenticity of host 'github.com (207.97.227.239)' can't be established.
+RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added 'github.com,207.97.227.239' (RSA) to the list of
+known hosts.
+Permission denied (publickey).
+fatal: The remote end hung up unexpectedly
+
+This is because you don't have SSH keys. Everyone need a private key and a
+public key for himself, and may get many other's public keys, so people can work
+and communicate together.
+Follow these steps in link below, you can resolve it.
+<http://help.github.com/linux-set-up-git/>
+
+e.g.
+[rescue@leafgrass workspace]$ cd ~/.ssh/
+[rescue@leafgrass .ssh]$ ls
+known_hosts
+[rescue@leafgrass .ssh]$ ssh-keygen -t rsa -C librae8226@hotmail.com
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/rescue/.ssh/id_rsa): 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved in /home/rescue/.ssh/id_rsa.
+Your public key has been saved in /home/rescue/.ssh/id_rsa.pub.
+The key fingerprint is:
+d6:2d:09:1f:32:c6:c7:d2:b7:c5:74:a3:ef:9d:f1:ea librae8226@hotmail.com
+The key's randomart image is:
++--[ RSA 2048]----+
+|              ...|
+|       . o   o...|
+|        B = ..o  |
+|       . O = o.  |
+|        S = o  o |
+|       .   .  . =|
+|               oo|
+|               . |
+|             .E  |
++-----------------+
+[rescue@leafgrass .ssh]$ cat id_rsa.pub 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDOXdY5RscN1gumTa0ZqNfTJ631WsK6Nwlaj9Bofk38kqLa6hI5RQ5SrmGG1EIH22is1wa1xCpSg2I6villDCUwfZcDc5ecyThLmaq44jip7Vle85LU3oSpJ/3Ak2ve/hP/ZrF4lZsd9fdvWwsj8jce2ZAspgrQELvAzfc7MqUWcBKyRuSQgwaWJLd1SozIn7Bm7BoHkTsaVo7qoKxrV+BSHY7/N/pPYXBkfZjXett0p2rBst7gBIKOB/vKesI9tK/lG8iAKnGTOAWJuCyxYwAWKjeJ2W1enGzf6m1tmzj3jJfvl2hLAlcyqYS1e6MUGyD0Hbn3aH0t9mcRwRThc6wx librae8226@hotmail.com
+[rescue@leafgrass .ssh]$
+
+On the GitHub site Click “Account Settings” > Click “SSH Public Keys” > Click
+“Add another public key”.
+Copy the WHOLE output string like above to the "Key" field.
+("Title" is not neccessary.)
+Then click on "Add key", everything is ok. The "clone" action can be done now.
+
+e.g.
+[rescue@leafgrass workspace]$ git clone git@github.com:rescue/grouptest.git
+Cloning into grouptest...
+remote: Counting objects: 6, done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 6 (delta 1), reused 6 (delta 1)
+Receiving objects: 100% (6/6), 25.11 KiB, done.
+Resolving deltas: 100% (1/1), done.
+[rescue@leafgrass workspace]$ ls
+grouptest
+
+OK? Go forward next step.
+
+
+Step 3 Basic Working on Local
 -----------------------------
+	cd grouptest
+	git pull
+	[do some changes]
+	git add .
+	git status
+	git commit -a
+	[type in your commit comment]
+	git push
 
-Markdown requires Perl 5.6.0 or later. Welcome to the 21st Century.
-Markdown also requires the standard Perl library module `Digest::MD5`. 
+e.g.
+[rescue@leafgrass grouptest]$ git pull
+Already up-to-date.
+[rescue@leafgrass grouptest]$ ls
+license.md  markdown.pl  readme.md  syntax.md
+[rescue@leafgrass grouptest]$ echo testing > test.md
+[rescue@leafgrass grouptest]$ ls
+license.md  markdown.pl  readme.md  syntax.md  test.md
+[rescue@leafgrass grouptest]$ git add .
+[rescue@leafgrass grouptest]$ git status
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	new file:   test.md
+#
+[rescue@leafgrass grouptest]$ git commit -a
+[master 0cc4938] test
+ 1 files changed, 12 insertions(+), 0 deletions(-)
+ create mode 100644 test.md
+[rescue@leafgrass grouptest]$ git push
+Counting objects: 4, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 300 bytes, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To git@github.com:rescue/grouptest.git
+   d0bc323..0cc4938  master -> master
+[rescue@leafgrass grouptest]$
 
+Well, now turn to you github page and you'll see all your changes.
 
-### Movable Type ###
-
-Markdown works with Movable Type version 2.6 or later (including 
-MT 3.0 or later).
-
-1.  Copy the "Markdown.pl" file into your Movable Type "plugins"
-    directory. The "plugins" directory should be in the same directory
-    as "mt.cgi"; if the "plugins" directory doesn't already exist, use
-    your FTP program to create it. Your installation should look like
-    this:
-
-        (mt home)/plugins/Markdown.pl
-
-2.  Once installed, Markdown will appear as an option in Movable Type's
-    Text Formatting pop-up menu. This is selectable on a per-post basis.
-    Markdown translates your posts to HTML when you publish; the posts
-    themselves are stored in your MT database in Markdown format.
-
-3.  If you also install SmartyPants 1.5 (or later), Markdown will offer
-    a second text formatting option: "Markdown with SmartyPants". This
-    option is the same as the regular "Markdown" formatter, except that
-    automatically uses SmartyPants to create typographically correct
-    curly quotes, em-dashes, and ellipses. See the SmartyPants web page
-    for more information: <http://daringfireball.net/projects/smartypants/>
-
-4.  To make Markdown (or "Markdown with SmartyPants") your default
-    text formatting option for new posts, go to Weblog Config ->
-    Preferences.
-
-Note that by default, Markdown produces XHTML output. To configure
-Markdown to produce HTML 4 output, see "Configuration", below.
-
-
-### Blosxom ###
-
-Markdown works with Blosxom version 2.x.
-
-1.  Rename the "Markdown.pl" plug-in to "Markdown" (case is
-    important). Movable Type requires plug-ins to have a ".pl"
-    extension; Blosxom forbids it.
-
-2.  Copy the "Markdown" plug-in file to your Blosxom plug-ins folder.
-    If you're not sure where your Blosxom plug-ins folder is, see the
-    Blosxom documentation for information.
-
-3.  That's it. The entries in your weblog will now automatically be
-    processed by Markdown.
-
-4.  If you'd like to apply Markdown formatting only to certain posts,
-    rather than all of them, see Jason Clark's instructions for using
-    Markdown in conjunction with Blosxom's Meta plugin:
-    
-    <http://jclark.org/weblog/WebDev/Blosxom/Markdown.html>
+Actually, that's all for regular code updating, modifying and uploading.
+Please see git documents for detailed information of these commands and other
+advanced usage.
 
 
-### BBEdit ###
+Step 4 Pull Request
+-------------------
+Two terms here: push and pull.
+push: After you commit your changes in you local repo, "push" will upload your
+changes to the server(that is, our repository) and do an auto-merge.
+pull: Download the latest files from server to your local repo(in fact, current
+branch) then do an auto-merge, too.
 
-Markdown works with BBEdit 6.1 or later on Mac OS X. (It also works
-with BBEdit 5.1 or later and MacPerl 5.6.1 on Mac OS 8.6 or later.)
+On the page of your github repo, click on the "Pull Request" up right.
+Then it will prompt a new page require you to fill in the requesting message,
+just like writing an E-Mail.
+Actually in this step, you are requesting the administrator of the repo you
+just forked to merge your changes into the main repo in Organization LeafGrass.
+Then you can see a line like this on github page:
+rescue wants someone to merge 1 commit into LeafGrass:master from rescue:master
 
-1.  Copy the "Markdown.pl" file to appropriate filters folder in your
-    "BBEdit Support" folder. On Mac OS X, this should be:
-
-        BBEdit Support/Unix Support/Unix Filters/
-
-    See the BBEdit documentation for more details on the location of
-    these folders.
-
-    You can rename "Markdown.pl" to whatever you wish.
-
-2.  That's it. To use Markdown, select some text in a BBEdit document,
-    then choose Markdown from the Filters sub-menu in the "#!" menu, or
-    the Filters floating palette
-
-
-
-Configuration
--------------
-
-By default, Markdown produces XHTML output for tags with empty elements.
-E.g.:
-
-    <br />
-
-Markdown can be configured to produce HTML-style tags; e.g.:
-
-    <br>
-
-
-### Movable Type ###
-
-You need to use a special `MTMarkdownOptions` container tag in each
-Movable Type template where you want HTML 4-style output:
-
-    <MTMarkdownOptions output='html4'>
-        ... put your entry content here ...
-    </MTMarkdownOptions>
-
-The easiest way to use MTMarkdownOptions is probably to put the
-opening tag right after your `<body>` tag, and the closing tag right
-before `</body>`.
-
-To suppress Markdown processing in a particular template, i.e. to
-publish the raw Markdown-formatted text without translation into
-(X)HTML, set the `output` attribute to 'raw':
-
-    <MTMarkdownOptions output='raw'>
-        ... put your entry content here ...
-    </MTMarkdownOptions>
-
-
-### Command-Line ###
-
-Use the `--html4tags` command-line switch to produce HTML output from a
-Unix-style command line. E.g.:
-
-    % perl Markdown.pl --html4tags foo.text
-
-Type `perldoc Markdown.pl`, or read the POD documentation within the
-Markdown.pl source code for more information.
-
-
-
-Bugs
-----
-
-To file bug reports or feature requests please send email to:
-<markdown@daringfireball.net>.
-
-
-
-Version History
----------------
-
-1.0.1 (14 Dec 2004):
-
-+	Changed the syntax rules for code blocks and spans. Previously,
-	backslash escapes for special Markdown characters were processed
-	everywhere other than within inline HTML tags. Now, the contents
-	of code blocks and spans are no longer processed for backslash
-	escapes. This means that code blocks and spans are now treated
-	literally, with no special rules to worry about regarding
-	backslashes.
-
-	**NOTE**: This changes the syntax from all previous versions of
-	Markdown. Code blocks and spans involving backslash characters
-	will now generate different output than before.
-
-+	Tweaked the rules for link definitions so that they must occur
-	within three spaces of the left margin. Thus if you indent a link
-	definition by four spaces or a tab, it will now be a code block.
+Thus, the repo administrator will receive an E-Mail like this:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rescue reply+i-1703947-fbed3312508d7ba9a649fc58...@reply.github.com to me
 	
-		   [a]: /url/  "Indented 3 spaces, this is a link def"
+This is just for pull request test.
 
-		    [b]: /url/  "Indented 4 spaces, this is a code block"
-	
-	**IMPORTANT**: This may affect existing Markdown content if it
-	contains link definitions indented by 4 or more spaces.
+You can merge this Pull Request by running:
 
-+	Added `>`, `+`, and `-` to the list of backslash-escapable
-	characters. These should have been done when these characters
-	were added as unordered list item markers.
+ git pull https://github.com/rescue/grouptest master
 
-+	Trailing spaces and tabs following HTML comments and `<hr/>` tags
-	are now ignored.
+Or you can view, comment on it, or merge it online at:
 
-+	Inline links using `<` and `>` URL delimiters weren't working:
+ https://github.com/LeafGrass/grouptest/pull/1
 
-		like [this](<http://example.com/>)
+-- Commit Summary --
 
-+	Added a bit of tolerance for trailing spaces and tabs after
-	Markdown hr's.
+* test
 
-+	Fixed bug where auto-links were being processed within code spans:
+-- File Changes --
 
-		like this: `<http://example.com/>`
+A test.md (12)
 
-+	Sort-of fixed a bug where lines in the middle of hard-wrapped
-	paragraphs, which lines look like the start of a list item,
-	would accidentally trigger the creation of a list. E.g. a
-	paragraph that looked like this:
+-- Patch Links --
 
-		I recommend upgrading to version
-		8. Oops, now this line is treated
-		as a sub-list.
+ https://github.com/LeafGrass/grouptest/pull/1.patch
+ https://github.com/LeafGrass/grouptest/pull/1.diff
 
-	This is fixed for top-level lists, but it can still happen for
-	sub-lists. E.g., the following list item will not be parsed
-	properly:
+--
+Reply to this email directly or view it on GitHub:
+https://github.com/LeafGrass/grouptest/pull/1
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-		+	I recommend upgrading to version
-			8. Oops, now this line is treated
-			as a sub-list.
-
-	Given Markdown's list-creation rules, I'm not sure this can
-	be fixed.
-
-+	Standalone HTML comments are now handled; previously, they'd get
-	wrapped in a spurious `<p>` tag.
-
-+	Fix for horizontal rules preceded by 2 or 3 spaces.
-
-+	`<hr>` HTML tags in must occur within three spaces of left
-	margin. (With 4 spaces or a tab, they should be code blocks, but
-	weren't before this fix.)
-
-+	Capitalized "With" in "Markdown With SmartyPants" for
-	consistency with the same string label in SmartyPants.pl.
-	(This fix is specific to the MT plug-in interface.)
-
-+	Auto-linked email address can now optionally contain
-	a 'mailto:' protocol. I.e. these are equivalent:
-
-		<mailto:user@example.com>
-		<user@example.com>
-
-+	Fixed annoying bug where nested lists would wind up with
-	spurious (and invalid) `<p>` tags.
-
-+	You can now write empty links:
-
-		[like this]()
-
-	and they'll be turned into anchor tags with empty href attributes.
-	This should have worked before, but didn't.
-
-+	`***this***` and `___this___` are now turned into
-
-		<strong><em>this</em></strong>
-
-	Instead of
-
-		<strong><em>this</strong></em>
-
-	which isn't valid. (Thanks to Michel Fortin for the fix.)
-
-+	Added a new substitution in `_EncodeCode()`: s/\$/&#036;/g; This
-	is only for the benefit of Blosxom users, because Blosxom
-	(sometimes?) interpolates Perl scalars in your article bodies.
-
-+	Fixed problem for links defined with urls that include parens, e.g.:
-
-		[1]: http://sources.wikipedia.org/wiki/Middle_East_Policy_(Chomsky)
-
-	"Chomsky" was being erroneously treated as the URL's title.
-
-+	At some point during 1.0's beta cycle, I changed every sub's
-	argument fetching from this idiom:
-
-		my $text = shift;
-
-	to:
-
-		my $text = shift || return '';
-
-	The idea was to keep Markdown from doing any work in a sub
-	if the input was empty. This introduced a bug, though:
-	if the input to any function was the single-character string
-	"0", it would also evaluate as false and return immediately.
-	How silly. Now fixed.
+Why pull request instead of direct push?
+Look at this page - <http://help.github.com/send-pull-requests/>
 
 
+Step 4 Development in the Future
+--------------------------------
+After we get to be familiar with this fast version control system - Git, each of
+us developers need a direct acess to the base repo for a faster developing
+process.
+Thus, one can create his own branch based on the latest master(trunk), and works
+on it. Developing new features or fixing bugs will be done on this branch.
+Ofcourse, he SHOULD take charge of his branch's healthy.
+As this specific feature is implemented or bug is fixed, and passed the testing,
+We can merge it to our trunk - master.
 
-Donations
----------
 
-Donations to support Markdown's development are happily accepted. See:
-<http://daringfireball.net/projects/markdown/> for details.
+Let's do to help the source tree growing up ...
+Thanks.
 
-
-
-Copyright and License
----------------------
-
-Copyright (c) 2003-2004 John Gruber   
-<http://daringfireball.net/>   
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
-
-* Redistributions of source code must retain the above copyright notice,
-  this list of conditions and the following disclaimer.
-
-* Redistributions in binary form must reproduce the above copyright
-  notice, this list of conditions and the following disclaimer in the
-  documentation and/or other materials provided with the distribution.
-
-* Neither the name "Markdown" nor the names of its contributors may
-  be used to endorse or promote products derived from this software
-  without specific prior written permission.
-
-This software is provided by the copyright holders and contributors "as
-is" and any express or implied warranties, including, but not limited
-to, the implied warranties of merchantability and fitness for a
-particular purpose are disclaimed. In no event shall the copyright owner
-or contributors be liable for any direct, indirect, incidental, special,
-exemplary, or consequential damages (including, but not limited to,
-procurement of substitute goods or services; loss of use, data, or
-profits; or business interruption) however caused and on any theory of
-liability, whether in contract, strict liability, or tort (including
-negligence or otherwise) arising in any way out of the use of this
-software, even if advised of the possibility of such damage.
