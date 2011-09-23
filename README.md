@@ -5,9 +5,9 @@ COPYRIGHT (C) LEAFGRASS
 
 Introduction
 ------------
-> "Ousia" is picked from Greek.
-> Mainly intend to represent the essence of Real-Time Theory.
-> Developed following K-I-S-S principle.
+- "Ousia" is picked from Greek.
+- Mainly intend to represent the essence of Real-Time Theory.
+- Developed following K-I-S-S principle.
 
 
 Source Tree Architecture
@@ -59,7 +59,7 @@ Porting Steps
 	> `ousia_port.c`: implentation of porting.
 -	Create other porting related stuffs, such as linker scripts, if necessary.
 -	Update `TARGET_PLATFORM` and `PROJECT_NAME` in main `Makefile`, then `make`.
-	>	
+
 	> _Ps_: If modify porting related code, should not edit directly in "core/port",
 	> do that in specific platform directory instead, e.g. "platform/stm32/port".
 	> Because makefile will copy them into "core/port" automatically.
@@ -71,7 +71,7 @@ Create User Project Steps
 -	Add user source code.
 -	Create a file `rules.mk` to specify source code related rules for makefile.
 -	Update `TARGET_PLATFORM` and `PROJECT_NAME` in main `Makefile`, then `make`.
-	>
+
 	> _Ps_: Refer to existing projects for further detailed information.
 
 
@@ -94,6 +94,6 @@ Download Code to Target Chip
 
 Acknowledgments
 ---------------
->	Parts of make system and libmaple stm32 low-level code are borrowed from libmaple.
->	Thanks to their excellent works! - <http://leaflabs.com>
+-	Parts of make system and libmaple stm32 low-level code are borrowed from libmaple.
+-	Thanks to their excellent works! - <http://leaflabs.com>
 
