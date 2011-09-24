@@ -13,26 +13,26 @@ Introduction
 Source Tree Architecture
 ------------------------
 - **core**
->	Ousia core routines. Ousia porting code are also placed here.
+	> Ousia core routines. Ousia porting code are also placed here.
 - **docs**
->	Complete documentation of Ousia.
+	> Complete documentation of Ousia.
 - **driver**
->	Different kinds of device drivers based on Ousia.
->	They are all configurable.
+	> Different kinds of device drivers based on Ousia.
+	> They are all configurable.
 - **framework**
->	Framework based on Ousia. Such as shell, vfs, etc.
->	They are scalable and configurable, either.
+	> Framework based on Ousia. Such as shell, vfs, etc.
+	> They are scalable and configurable, either.
 - **include**
->	Header files of main routines of Ousia.
+	> Header files of main routines of Ousia.
 - **platform**
->	Chip and board specific code, e.g. low-level library.
+	> Chip and board specific code, e.g. low-level library.
 - **project**
-	Project source code. Include several sample project instances.
+	> Project source code. Include several sample project instances.
 - **script**
-	Useful scripts used while Ousia developing.
+	> Useful scripts used while Ousia developing.
 - **support**
-	Basic supporting stuffs for Ousia developing and building.
-	Useful template files are placed here, such as porting code template.
+	> Basic supporting stuffs for Ousia developing and building.
+	> Useful template files are placed here, such as porting code template.
 
 
 Core Developing Steps
