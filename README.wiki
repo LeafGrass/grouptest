@@ -1,0 +1,156 @@
+[[index|Hame Page]]
+
+%toc index
+
+==== Modify the authority of folder(s) or file(s) ====
+	1) To modify the ownership of file(s).<br>
+    $ chown -R USER.NAME OBJ.NAME<br>
+	2) To modify the group ownership of file(s).<br>
+    $ chgrp -R GROUP.NAME OBJ.NAME<br>
+    OR directly like this to change ownership and group at a time:
+	`$ chown -R USER.NAME:GROUP.NAME OBJ.NAME`
+
+==== TAR ====
+	1) Extract.<br>
+    tar xvfj TARBALL.tar.bz2<br>
+    tar xvfz TARBALL.tar.gz<br>
+	2) Compress.<br>
+    tar cvfj TARBALL.tar.bz2 FOLDERtoCOMPRESS<br>
+    tar cvfz TARBALL.tar.gz FOLDERtoCOMPRESS<br>
+    
+==== Mount Compile Server ====
+Problem description<br>
+    $ sudo mount -t nfs -o nolock 192.168.1.71:/home/yliao /home/yliao/mnt/           compile_server<br>
+    mount.nfs: access denied by server while mounting 192.168.1.71:/home/yliao
+
+Solution
+    $ sudo /etc/init.d/nfs-kernel-server start
+(NOTE: Run this command on server.)
+
+==== Run scripts automatically ====
+	Just modify this file "/etc/rc.d/rc.local", cause this script will run on each boot up.<br>
+	
+==== Run command in another process without suspend terminal ====
+	Add a & just follow the command sequence, such as:
+	`$ gedit xxx.c &`
+	Then there will print a PID repesent that process. When it is finished, there will print some message, too.
+	
+==== find and delete ====
+	Delete specific files(dirs). As,<br>
+	`find . -name ".svn" -exec rm -rf {} \;`
+	
+==== install openssh-server for remote accessing by others ====
+	`sudo apt-get install openssh-server`
+
+==== scp simple usage ====
+	`scp yliao@192.168.1.71:/home/yliao/work/marlin4xxu.tar.bz2 .`
+	
+==== Concatenate files and output to a new file ====
+	cat file1 file2 > newfile
+
+==== Bluetooth Driver in Fedora 15 ====
+The three main command we may use: *hciattach*, *hciconfig*, *hcitool*<br>
+`$ lsusb`<br>
+_Bus 006 Device 003: ID 0a12:0001 Cambridge Silicon Radio, Ltd Bluetooth Dongle (HCI mode)_<br>
+`$ sudo hciconfig hci0 down`<br>
+`$ sudo hciconfig hci0 up`<br>
+`$ hcitool scan`<br>
+If succeed, it would be like this:<br>
+_Scanning ..._<br>
+	_00:10:11:07:00:05	HC-05_<br>
+Then we can use hci to control the Bluetooth Adapter.<br>
+
+==== tftp server ====
+*(on UBUNTU 11.04 32-bit)*<br>
+1) `sudo apt-get install xinetd tftp tftpd-hpa`<br>
+2) Create a new file /etc/default/tftpd-hpa:<br>
+{{{
+#/etc/default/tftpd-hpa
+
+TFTP_USERNAME="tftp"
+TFTP_DIRECTORY="/opt/tftpboot"
+TFTP_ADDRESS="192.168.1.130:69"
+TFTP_OPTIONS="--secure"
+}}}
+3) `sudo service tftpd-hpa start`<br>
+`tftpd-hpa start/running, process 17318`
+That is ok.<br>
+4) Testing<br>
+`tftp 192.168.1.130`<br>
+{{{
+tftp> get image_yliao/sm/uImage
+}}}
+
+==== Sourcery Tools Support Portal (Also resolve the problem to run 32-bit excutables on a 64-bit) ====
+_On GTV building, I got: bash: arm-marvell-eabi-gcc: no such file or directory_<br>
+_After I resolve the CodeSourcery 64-bit problem, the GTV building can continue._<br>
+_Maybe just need some packages to install._<br>
+Source: https://sourcery.mentor.com/GNUToolchain/kbentry62<br>
+
+What do I need to do to install and run Sourcery CodeBench on an x86 64-bit Linux host system?<br>
+In order to use Sourcery CodeBench on an x86 64-bit Linux host system, you must have 32-bit system libraries installed. You can install these 32-bit libraries using your system's package management tool, or build them from source.<br>
+Distribution Notes:<br>
+
+*Debian/Ubuntu*<br>
+The following 32-bit libraries are available as packages that can be installed using apt-get on the command line or graphically using Synaptic:<br>
+
+        ia32-libs<br>
+        ia32-libs-gtk (not required for Hardy 8.04 and later)<br>
+
+To install these packages from the command line:<br>
+`sudo apt-get install ia32-libs ia32-libs-gtk`<br>
+Next you will need to use Getlibs to install a 32-bit version of xulrunner:<br>
+
+        Download getlibs-all.deb<br>
+        Install getlibs-all.deb by running:<br>
+        `sudo dpkg -i getlibs-all.deb`<br>
+        Install the 32-bit xulrunner by running:<br>
+        `sudo getlibs -p xulrunner-1.9.2` (not necessary)<br>
+        Setup the IDE to use your recently installed 32-bit xulrunner:<br>
+        `export MOZILLA_FIVE_HOME=/usr/lib32/xulrunner-1.9.2.X` (not necessary)<br>
+        Substitute X for the version you see installed on your system. You will need to set this environment variable every time you start the IDE.
+
+*Red Hat Enterprise Linux*<br>
+The following 32-bit library is available as a package that can be installed using the up2date command:<br>
+
+        glibc-devel<br>
+
+To install this package from the command line:<br>
+`up2date-nox -i --arch=i386 glibc`<br>
+
+*Fedora*<br>
+If working with a new installation of the operating system please run yum update before attempting the following steps.<br>
+Logged in as the root user run the following:<br>
+
+    Fedora 14:<br>
+    `yum install glibc-devel.i686 gtk2-devel.i686 gtk-nodoka-engine.i686 \`<br>
+    `libcanberra.i686 libcanberra-gtk2.i686 PackageKit-gtk-module.i686 \`<br>
+    `GConf2.i686 ncurses-libs.i686 xulrunner.i686`<br>
+
+    Fedora 11:<br>
+    `yum install glibc-devel.i586 gtk2-devel.i586 gtk-nodoka-engine.i586 \`<br>
+    `libcanberra.i586 libcanberra-gtk2.i586 PackageKit-gtk-module.i586 \`<br>
+    `GConf2.i586 ncurses-libs.i586 xulrunner.i586`<br>
+
+*Generic Linux*<br>
+The following 32-bit libraries must be installed with versions greater than or equal to those listed here:<br>
+
+        GLIBC 2.3<br>
+        GTK 2.2.1<br>
+        ATK 1.2.0<br>
+        glib 2.2.1<br>
+        Pango 1.2.1<br>
+        Freetype 2.1.3<br>
+        Ncurses 5.0<br>
+        XULRunner 1.9.1<br>
+
+==== Install Sun Java in Ubuntu 11.04 ====
+Since sun java is not in ubuntu official repo source, we need to add it:<br>
+`sudo add-apt-repository ppa:ferramroberto/java`<br>
+`sudo apt-get update`<br>
+`sudo apt-get install sun-java6-jre sun-java6-plugin sun-java6-jdk`<br>
+
+==== Download Directories from FTP use wget ====
+Such as:<br>
+`wget ftp://ftp.cn.freebsd.org/pub/FreeBSD/releases/amd64/8.2-RELEASE/* -r`<br>
+
