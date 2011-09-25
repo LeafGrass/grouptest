@@ -13,9 +13,9 @@ Step 0 Install and Setup Git
 ----------------------------
 
 In Fedora
-	sudo yum install git gitk
+	sudo yum install git gitg
 Or in Ubuntu
-	sudo apt-get install git gitk
+	sudo apt-get install git gitg
 Then
 	git config --global user.name YOUR_NAME
 	git config --global user.email 'YOUR_EMAIL'
