@@ -199,7 +199,12 @@ Then run (auto-merge)
 OR (manual merge)
 	git fetch upstream
 	git merge upstream/master
-
+--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- -	
+| NOTE: "git remote add upstream git@github.com:LeafGrass/grouptest.git" |
+| is similar to "#define upstream git@github.com:LeafGrass/grouptest.git"|
+| of C. and in the repo floder that you've cloned into a local disk this |
+|command is avvilable... Am i right librae ?                             |
+---  --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 That's all for you to keep your working branch up-to-date.
 For detailed information about differences between "fetch" and "pull", refer to
 <http://help.github.com/fork-a-repo/> What is the difference between fetch and pull?
