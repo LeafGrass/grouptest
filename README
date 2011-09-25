@@ -52,6 +52,7 @@ See? There is a line represent for address of this repo, like:
     git@github.com:rescue/grouptest.git
 Ok, in your local command line, run
 	git clone git@github.com:rescue/grouptest.git
+(NOTE! "rescue" is an example username, for you, it should be yours.)
 
 Then, I guess you'll meet a problem below, like:
 [rescue@leafgrass workspace]$ git clone git@github.com:rescue/grouptest.git
